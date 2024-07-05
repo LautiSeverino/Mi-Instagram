@@ -64,6 +64,11 @@ button a {
     text-decoration: none;
 }
 
+.btnEliminar {
+    background-color: #ff4c4c;
+    color: white;
+}
+
 header {
     position: fixed;
     top: 0;
@@ -85,8 +90,6 @@ header h1 {
 body {
     padding-top: 70px;
 }
-
-
 
 footer {
     position: fixed;
@@ -111,8 +114,6 @@ footer button a {
     color: white;
     text-decoration: none;
 }
-
-
 
 .container {
     display: flex;
@@ -172,4 +173,3 @@ footer button a {
     background-color: #ccc;
     color: #333;
 }
-

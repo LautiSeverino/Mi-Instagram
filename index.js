@@ -1,4 +1,3 @@
-
 const apiUrl = 'https://6626e00db625bf088c06d1c4.mockapi.io/api/v1/imagenes';
 
 const imagenesContainer = document.getElementById('imagenes-container');
@@ -18,6 +17,7 @@ function cargarImagenes() {
                         <div class="card-content">
                             <h2>${imagen.titulo}</h2>
                             <p>${imagen.fecha}</p>
+                            <button class="btnEliminar" data-id="${imagen.id}">Eliminar</button>
                         </div>
                     `;
                 imagenesContainer.appendChild(card);
@@ -25,9 +25,25 @@ function cargarImagenes() {
                     card.style.marginBottom = '120px';
                 }
             });
+
+            document.querySelectorAll('.btnEliminar').forEach(button => {
+                button.addEventListener('click', eliminarImagen);
+            });
         })
         .catch(error => console.error('Error al obtener los datos:', error));
 }
 
-cargarImagenes();
+function eliminarImagen(event) {
+    const imagenId = event.target.getAttribute('data-id');
+    fetch(`${apiUrl}/${imagenId}`, { method: 'DELETE' })
+        .then(response => {
+            if (response.ok) {
+                cargarImagenes();
+            } else {
+                console.error('Error al eliminar la imagen');
+            }
+        })
+        .catch(error => console.error('Error al eliminar la imagen:', error));
+}
 
+cargarImagenes();
